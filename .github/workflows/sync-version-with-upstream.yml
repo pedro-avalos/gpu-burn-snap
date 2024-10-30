@@ -22,7 +22,7 @@ jobs:
         with:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           update-script: |
-            VERSION=$(curl -sL https://api.github.com/repos/wilicc/gpu-burn/commits \
+            SRC_COMMIT=$(curl -sL https://api.github.com/repos/wilicc/gpu-burn/commits \
               | jq -r .[0].sha
             )
-            sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
+            sed -i 's/^\(source-commit: \).*$/\1'"$SRC_COMMIT"'/' snap/snapcraft.yaml
