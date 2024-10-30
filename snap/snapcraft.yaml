@@ -26,7 +26,6 @@ apps:
       - opengl
       - nvidia-drivers-support
       - home
-      - personal-files
 
 package-repositories:
   - type: apt

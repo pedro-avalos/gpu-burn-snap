@@ -4,6 +4,7 @@
 /prime/
 
 *.snap
+snapcraft-gpu-burn-*.txt
 
 .snapcraft
 __pycache__
