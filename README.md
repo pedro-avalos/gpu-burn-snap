@@ -1,7 +1,5 @@
 <h1 align="center">
-  <img src="https://avatars1.githubusercontent.com/u/29598503?v=3&s=256" alt="[Project]">
-  <br />
-  [Project]
+  GPU Burn
 </h1>
 
 <p align="center"><b>This is the snap for <a href="https://github.com/wilicc/gpu-burn">GPU Burn</a></b>, <i>"Multi-GPU CUDA stress test"</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
