@@ -1,7 +1,7 @@
 name: gpu-burn
 title: GPU Burn
 summary: Multi-GPU CUDA stress test
-adopt-info: gpu-burn
+version: 9aefd7c0cc
 license: BSD-2-Clause
 description: |
   This allows you to run a stress test on your GPUs. Memory usage can
@@ -46,9 +46,6 @@ parts:
     source-commit: 9aefd7c0cc603bbc8c3c102f5338c6af26f8127c
     build-packages: [cuda-toolkit-12-6]
     stage-packages: [libcublas-12-6]
-    override-pull: |
-      craftctl default
-      craftctl set version=$(git rev-parse --short HEAD)
     override-build: |
       make
       mkdir -p $CRAFT_PART_INSTALL/usr/sbin $CRAFT_PART_INSTALL/usr/share/gpu-burn
