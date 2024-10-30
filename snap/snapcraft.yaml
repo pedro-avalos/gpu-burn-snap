@@ -28,6 +28,7 @@ apps:
       - opengl
       - nvidia-drivers-support
       - home
+      - removable-media
 
 package-repositories:
   - type: apt
