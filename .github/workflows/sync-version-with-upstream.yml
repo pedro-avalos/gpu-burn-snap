@@ -22,8 +22,7 @@ jobs:
         with:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           update-script: |
-            echo "Change me!"
-            # This should be a script that looks for a new upstream version, and modifies the
-            # snapcraft.yaml accordingly. For examples, take a look at:
-            # - https://github.com/snapcrafters/mattermost-desktop/blob/candidate/.github/workflows/sync-version-with-upstream.yml
-            # - https://github.com/snapcrafters/discord/blob/candidate/.github/workflows/sync-version-with-upstream.yml
+            VERSION=$(curl -sL https://api.github.com/repos/wilicc/gpu-burn/commits \
+              | jq -r .[0].sha
+            )
+            sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
