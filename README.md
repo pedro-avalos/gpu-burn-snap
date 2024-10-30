@@ -26,11 +26,9 @@ sudo snap install gpu-burn
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
-If you have any questions, [post in the Snapcraft forum](https://forum.snapcraft.io).
-
 ## The Snapcrafters
 
-| [![Your Name](https://gravatar.com/avatar/99d80a655179643de6d2b8eccad0b12a16b21d778a5c2676ed9ab7dcaa0d889c/?s=128)](https://github.com/pedro-avalos/) |
+| [![Pedro Avalos Jimenez](https://gravatar.com/avatar/99d80a655179643de6d2b8eccad0b12a16b21d778a5c2676ed9ab7dcaa0d889c/?s=128)](https://github.com/pedro-avalos/) |
 | :---: |
 | [Pedro Avalos Jimenez](https://github.com/pedro-avalos/) |
 
