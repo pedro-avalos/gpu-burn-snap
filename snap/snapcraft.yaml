@@ -22,7 +22,11 @@ platforms:
 apps:
   gpu-burn:
     command: usr/sbin/gpu-burn
-    plugs: [opengl]
+    plugs:
+      - opengl
+      - nvidia-drivers-support
+      - home
+      - personal-files
 
 package-repositories:
   - type: apt
