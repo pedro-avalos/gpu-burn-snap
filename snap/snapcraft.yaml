@@ -26,7 +26,6 @@ apps:
     command: usr/sbin/gpu-burn -c $SNAP/usr/share/gpu-burn/compare.ptx
     plugs:
       - opengl
-      - nvidia-drivers-support
       - home
       - removable-media
 
