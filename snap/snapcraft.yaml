@@ -4,7 +4,9 @@ summary: Multi-GPU CUDA stress test
 version: git
 license: BSD-2-Clause
 description: |
-  Multi-GPU CUDA stress test
+  This allows you to run a stress test on your GPUs. Memory usage can
+  be controlled by absolute number or percentage. The tool can also be
+  run on a single GPU, which is useful if you have a mixed multi-GPU system.
 
 website: http://wili.cc/blog/gpu-burn.html
 contact: https://github.com/pedro-avalos/gpu-burn-snap/issues
