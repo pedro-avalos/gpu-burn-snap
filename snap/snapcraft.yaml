@@ -1,16 +1,47 @@
-name: my-snap-name # you probably want to 'snapcraft register <name>'
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+name: gpu-burn
+title: GPU Burn
+summary: Multi-GPU CUDA stress test
+version: git
+license: BSD-2-Clause
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  Multi-GPU CUDA stress test
 
-base: core22
-confinement: devmode # use 'strict' once you have the right plugs and slots
+website: http://wili.cc/blog/gpu-burn.html
+contact: https://github.com/pedro-avalos/gpu-burn-snap/issues
+issues: https://github.com/pedro-avalos/gpu-burn-snap/issues
+source-code: https://github.com/wilicc/gpu-burn
+
+base: core24
+grade: stable
+confinement: strict
+compression: lzo
+
+platforms:
+  amd64:
+
+apps:
+  gpu-burn:
+    command: usr/sbin/gpu-burn
+    plugs: [opengl]
+
+package-repositories:
+  - type: apt
+    architectures: [amd64]
+    formats: [deb]
+    path: /
+    key-id: EB693B3035CD5710E231E123A4B469963BF863CC
+    url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64
 
 parts:
-  my-part:
-    # See 'snapcraft plugins'
-    plugin: nil
+  gpu-burn:
+    plugin: make
+    source: https://github.com/wilicc/gpu-burn.git
+    source-type: git
+    build-packages: [cuda-toolkit-12-6]
+    stage-packages: [libcublas-12-6]
+    override-build: |
+      make
+      mkdir -p $CRAFT_PART_INSTALL/usr/sbin $CRAFT_PART_INSTALL/usr/share/gpu-burn
+      cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+      cp compare.ptx $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+      ln -s ../share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/usr/sbin/gpu-burn
