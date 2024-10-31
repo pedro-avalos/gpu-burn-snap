@@ -25,6 +25,6 @@ jobs:
             SRC_COMMIT=$(curl -sL https://api.github.com/repos/wilicc/gpu-burn/commits \
               | jq -r .[0].sha
             )
-            VERSION={SRC_COMMIT:0:10}
+            VERSION=${SRC_COMMIT:0:10}
             sed -i 's/^\(source-commit: \).*$/\1'"$SRC_COMMIT"'/' snap/snapcraft.yaml
             sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
