@@ -1,7 +1,7 @@
 name: gpu-burn
 title: GPU Burn
 summary: Multi-GPU CUDA stress test
-version: 9aefd7c0cc
+version: {SRC_COMMIT:0:10}
 license: BSD-2-Clause
 description: |
   This allows you to run a stress test on your GPUs. Memory usage can
