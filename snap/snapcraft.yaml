@@ -23,7 +23,9 @@ platforms:
 
 apps:
   gpu-burn:
-    command: usr/sbin/gpu-burn -c $SNAP/usr/share/gpu-burn/compare.ptx
+    command: bin/gpu-burn -c $SNAP/usr/share/gpu-burn/compare.ptx
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/local/cuda/lib:$LD_LIBRARY_PATH
     plugs:
       - opengl
       - hardware-observe
@@ -55,17 +57,20 @@ parts:
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
     source-commit: 9aefd7c0cc603bbc8c3c102f5338c6af26f8127c
-    build-packages: [cuda-toolkit-12-6]
+    build-packages: [cuda-toolkit-12-6, libcublas-12-6]
     stage-packages: [libglu1-mesa]
     override-build: |
       make
 
-      mkdir -p $CRAFT_PART_INSTALL/usr/sbin $CRAFT_PART_INSTALL/usr/share/gpu-burn
+      mkdir -p $CRAFT_PART_INSTALL/bin \
+        $CRAFT_PART_INSTALL/usr/share/gpu-burn \
+        $CRAFT_PART_INSTALL/usr/local/cuda/lib
 
       cp gpu-burn.8 $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp LICENSE $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp README.md $CRAFT_PART_INSTALL/usr/share/gpu-burn/
-      cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp compare.ptx $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+      cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+      ln -s ../share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
 
-      ln -s ../share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/usr/sbin/gpu-burn
+      cp /usr/local/cuda/lib64/libcublas* $CRAFT_PART_INSTALL/usr/local/cuda/lib/
