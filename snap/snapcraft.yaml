@@ -57,7 +57,10 @@ parts:
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
     source-commit: 9aefd7c0cc603bbc8c3c102f5338c6af26f8127c
-    build-packages: [cuda-toolkit-12-6, libcublas-12-6]
+    build-packages:
+      - cuda-toolkit-12-6
+      - libcublas-12-6
+      - cuda-cudart-12-6
     stage-packages: [libglu1-mesa]
     override-build: |
       make
@@ -73,4 +76,9 @@ parts:
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       ln -s ../usr/share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
 
-      cp /usr/local/cuda/lib64/libcublas* $CRAFT_PART_INSTALL/usr/local/cuda/lib/
+      cp /usr/local/cuda/lib64/libcublas* \
+        $CRAFT_PART_INSTALL/usr/local/cuda/lib/
+      cp /usr/local/cuda/lib64/libcublasLt* \
+        $CRAFT_PART_INSTALL/usr/local/cuda/lib/
+      cp /usr/local/cuda/lib64/libcudart* \
+        $CRAFT_PART_INSTALL/usr/local/cuda/lib/
