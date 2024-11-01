@@ -48,7 +48,12 @@ parts:
     build-packages: [cuda-toolkit-12-6]
     override-build: |
       make
+
       mkdir -p $CRAFT_PART_INSTALL/usr/sbin $CRAFT_PART_INSTALL/usr/share/gpu-burn
+
+      cp LICENSE $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+      cp README.md $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp compare.ptx $CRAFT_PART_INSTALL/usr/share/gpu-burn/
+
       ln -s ../share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/usr/sbin/gpu-burn
