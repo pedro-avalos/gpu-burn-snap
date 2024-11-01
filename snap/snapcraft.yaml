@@ -27,6 +27,7 @@ apps:
     plugs:
       - opengl
       - hardware-observe
+      - block-devices
       - network-bind
       - home
       - removable-media
