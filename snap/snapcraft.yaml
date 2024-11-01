@@ -71,6 +71,6 @@ parts:
       cp README.md $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp compare.ptx $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
-      ln -s ../share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
+      ln -s ../usr/share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
 
       cp /usr/local/cuda/lib64/libcublas* $CRAFT_PART_INSTALL/usr/local/cuda/lib/
