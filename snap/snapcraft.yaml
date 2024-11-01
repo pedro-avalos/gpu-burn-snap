@@ -62,6 +62,7 @@ parts:
 
       mkdir -p $CRAFT_PART_INSTALL/usr/sbin $CRAFT_PART_INSTALL/usr/share/gpu-burn
 
+      cp gpu-burn.8 $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp LICENSE $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp README.md $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
