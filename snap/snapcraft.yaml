@@ -24,6 +24,7 @@ platforms:
 apps:
   gpu-burn:
     command: bin/gpu-burn -c $SNAP/usr/share/gpu-burn/compare.ptx
+    extensions: [gnome]
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/local/cuda/lib:$LD_LIBRARY_PATH
     plugs:
@@ -43,16 +44,7 @@ package-repositories:
     priority: 600
 
 parts:
-  glib-only:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-type: git
-    source-subdir: glib-only
-    plugin: make
-    build-packages: [libglib2.0-dev]
-    stage-packages: [libglib2.0-bin]
-
   gpu-burn:
-    after: [glib-only]
     plugin: make
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
@@ -61,7 +53,6 @@ parts:
       - cuda-toolkit-12-6
       - libcublas-12-6
       - cuda-cudart-12-6
-    stage-packages: [libglu1-mesa]
     override-build: |
       make
 
