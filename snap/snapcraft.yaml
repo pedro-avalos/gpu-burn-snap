@@ -55,7 +55,7 @@ parts:
       - libcublas-12-6
       - cuda-cudart-12-6
     override-build: |
-      craftctl default
+      make
 
       mkdir -p $CRAFT_PART_INSTALL/bin \
         $CRAFT_PART_INSTALL/usr/share/gpu-burn \
