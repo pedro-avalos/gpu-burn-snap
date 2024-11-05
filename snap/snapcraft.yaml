@@ -93,3 +93,4 @@ lint:
       - usr/local/cuda/lib/libcublasLt.so*
       - usr/local/cuda/lib/libcudart.so*
       - usr/lib/x86_64-linux-gnu/libGLU.so*
+      - usr/lib/x86_64-linux-gnu/libOpenGL.so*
