@@ -76,3 +76,10 @@ parts:
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
 
       cp /usr/bin/nvidia-smi $CRAFT_PART_INSTALL/bin/
+
+lint:
+  ignore:
+    - library:
+      - usr/local/cuda/lib/libcublas.so*
+      - usr/local/cuda/lib/libcublasLt.so*
+      - usr/local/cuda/lib/libcudart.so*
