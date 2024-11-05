@@ -24,11 +24,10 @@ platforms:
 apps:
   gpu-burn:
     command: bin/gpu-burn -c $SNAP/usr/share/gpu-burn/compare.ptx
-    extensions: [gnome]
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/local/cuda/lib:$LD_LIBRARY_PATH
+    extensions: [gnome]
     plugs:
-      - opengl
       - hardware-observe
       - network-bind
       - home
@@ -55,7 +54,7 @@ parts:
       - libcublas-12-6
       - cuda-cudart-12-6
     override-build: |
-      make
+      craftctl default
 
       mkdir -p $CRAFT_PART_INSTALL/bin \
         $CRAFT_PART_INSTALL/usr/share/gpu-burn \
