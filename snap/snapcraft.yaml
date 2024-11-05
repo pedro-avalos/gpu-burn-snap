@@ -28,6 +28,7 @@ apps:
       LD_LIBRARY_PATH: $SNAP/usr/local/cuda/lib:$LD_LIBRARY_PATH
     extensions: [gnome]
     plugs:
+      - opengl
       - hardware-observe
       - network-bind
       - home
