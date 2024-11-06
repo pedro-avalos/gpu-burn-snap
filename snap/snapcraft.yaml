@@ -81,11 +81,11 @@ parts:
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       ln -s ../usr/share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
 
-      cp /usr/local/cuda/lib64/libcublas* \
+      cp -a /usr/local/cuda/lib64/libcublas* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
-      cp /usr/local/cuda/lib64/libcublasLt* \
+      cp -a /usr/local/cuda/lib64/libcublasLt* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
-      cp /usr/local/cuda/lib64/libcudart* \
+      cp -a /usr/local/cuda/lib64/libcudart* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
 
       cp /usr/bin/nvidia-smi $CRAFT_PART_INSTALL/bin/
@@ -98,3 +98,4 @@ lint:
       - usr/local/cuda/lib/libcudart.so*
       - usr/lib/x86_64-linux-gnu/libGLU.so*
       - usr/lib/x86_64-linux-gnu/libOpenGL.so*
+      - usr/lib/x86_64-linux-gnu/libGLdispatch.so*
