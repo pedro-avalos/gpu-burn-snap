@@ -1,0 +1,53 @@
+diff --git a/Makefile b/Makefile
+index 8880583..95dd9fb 100644
+--- a/Makefile
++++ b/Makefile
+@@ -26,29 +26,29 @@ override LDFLAGS  += -Wl,-rpath=${CUDAPATH}/lib
+ override LDFLAGS  += -lcublas
+ override LDFLAGS  += -lcudart
+ 
+-COMPUTE      ?= 50
++CUDA_ARCH    ?= native
+ CUDA_VERSION ?= 11.8.0
+ IMAGE_DISTRO ?= ubi8
+ 
+ override NVCCFLAGS ?=
+ override NVCCFLAGS += -I${CUDAPATH}/include
+-override NVCCFLAGS += -arch=compute_$(subst .,,${COMPUTE})
++override NVCCFLAGS += -arch=${CUDA_ARCH}
+ 
+ IMAGE_NAME ?= gpu-burn
+ 
+ .PHONY: clean
+ 
+-gpu_burn: gpu_burn-drv.o compare.ptx
++gpu_burn: gpu_burn-drv.o compare.fatbin
+ 	g++ -o $@ $< -O3 ${LDFLAGS}
+ 
+ %.o: %.cpp
+ 	g++ ${CFLAGS} -c $<
+ 
+-%.ptx: %.cu
+-	PATH="${PATH}:${CCPATH}:." ${NVCC} ${NVCCFLAGS} -ptx $< -o $@
++%.fatbin: %.cu
++	PATH="${PATH}:${CCPATH}:." ${NVCC} ${NVCCFLAGS} -fatbin $< -o $@
+ 
+ clean:
+-	$(RM) *.ptx *.o gpu_burn
++	$(RM) *.fatbin *.o gpu_burn
+ 
+ image:
+ 	docker build --build-arg CUDA_VERSION=${CUDA_VERSION} --build-arg IMAGE_DISTRO=${IMAGE_DISTRO} -t ${IMAGE_NAME} .
+diff --git a/gpu_burn-drv.cpp b/gpu_burn-drv.cpp
+index f29410b..d92c37d 100644
+--- a/gpu_burn-drv.cpp
++++ b/gpu_burn-drv.cpp
+@@ -30,7 +30,7 @@
+ // Matrices are SIZE*SIZE..  POT should be efficiently implemented in CUBLAS
+ #define SIZE 8192ul
+ #define USEMEM 0.9 // Try to allocate 90% of memory
+-#define COMPARE_KERNEL "compare.ptx"
++#define COMPARE_KERNEL "compare.fatbin"
+ 
+ // Used to report op/s, measured through Visual Profiler, CUBLAS from CUDA 7.5
+ // (Seems that they indeed take the naive dim^3 approach)
