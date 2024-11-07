@@ -74,7 +74,5 @@ parts:
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
       cp -a /usr/local/cuda/lib64/libcublasLt.so* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
-      cp -a /usr/lib/x86_64-linux-gnu/libcuda.so* \
-        $CRAFT_PART_INSTALL/usr/local/cuda/lib/
 
       cp /usr/bin/nvidia-smi $CRAFT_PART_INSTALL/bin/
