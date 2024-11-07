@@ -61,7 +61,6 @@ parts:
       - nvidia-utils-550-server
       - cuda-toolkit-12-6
       - libcublas-12-6
-      - cuda-cudart-12-6
     stage-packages: [libglu1-mesa]
     override-pull: |
       craftctl default
@@ -81,11 +80,9 @@ parts:
       cp gpu_burn $CRAFT_PART_INSTALL/usr/share/gpu-burn/
       ln -s ../usr/share/gpu-burn/gpu_burn $CRAFT_PART_INSTALL/bin/gpu-burn
 
-      cp -a /usr/local/cuda/lib64/libcublas* \
+      cp -a /usr/local/cuda/lib64/libcublas.so* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
-      cp -a /usr/local/cuda/lib64/libcublasLt* \
-        $CRAFT_PART_INSTALL/usr/local/cuda/lib/
-      cp -a /usr/local/cuda/lib64/libcudart* \
+      cp -a /usr/local/cuda/lib64/libcublasLt.so* \
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
 
       cp /usr/bin/nvidia-smi $CRAFT_PART_INSTALL/bin/
@@ -93,9 +90,6 @@ parts:
 lint:
   ignore:
     - library:
-      - usr/local/cuda/lib/libcublas.so*
-      - usr/local/cuda/lib/libcublasLt.so*
-      - usr/local/cuda/lib/libcudart.so*
       - usr/lib/x86_64-linux-gnu/libGLU.so*
       - usr/lib/x86_64-linux-gnu/libOpenGL.so*
       - usr/lib/x86_64-linux-gnu/libGLdispatch.so*
