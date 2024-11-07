@@ -43,16 +43,7 @@ package-repositories:
     priority: 600
 
 parts:
-  glib-only:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-type: git
-    source-subdir: glib-only
-    plugin: make
-    build-packages: [libglib2.0-dev]
-    stage-packages: [libglib2.0-bin]
-
   gpu-burn:
-    after: [glib-only]
     plugin: make
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
@@ -61,7 +52,6 @@ parts:
       - nvidia-utils-550-server
       - cuda-toolkit-12-6
       - libcublas-12-6
-    stage-packages: [libglu1-mesa]
     override-pull: |
       craftctl default
       git apply --ignore-space-change --ignore-whitespace \
@@ -86,10 +76,3 @@ parts:
         $CRAFT_PART_INSTALL/usr/local/cuda/lib/
 
       cp /usr/bin/nvidia-smi $CRAFT_PART_INSTALL/bin/
-
-lint:
-  ignore:
-    - library:
-      - usr/lib/x86_64-linux-gnu/libGLU.so*
-      - usr/lib/x86_64-linux-gnu/libOpenGL.so*
-      - usr/lib/x86_64-linux-gnu/libGLdispatch.so*
