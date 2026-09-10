@@ -57,9 +57,9 @@ parts:
     source-type: git
     source-commit: 3ead140434da9473582b68452f7115967a7a0581
     build-packages:
-      - nvidia-utils-550
-      - cuda-toolkit-12-6
-      - libcublas-12-6
+      - nvidia-utils-580
+      - cuda-toolkit-13-4
+      - libcublas-13-4
     override-pull: |
       craftctl default
       git apply --ignore-space-change --ignore-whitespace \
