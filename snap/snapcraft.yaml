@@ -60,10 +60,6 @@ parts:
       - nvidia-utils-580
       - cuda-toolkit-13-4
       - libcublas-13-4
-    override-pull: |
-      craftctl default
-      git apply --ignore-space-change --ignore-whitespace \
-        $CRAFT_PROJECT_DIR/snap/local/patches/*.patch
     override-build: |
       make COMPUTE= NVCCFLAGS='-gencode=arch=compute_75,code=sm_75 \
         -gencode=arch=compute_80,code=sm_80 \
