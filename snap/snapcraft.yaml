@@ -55,7 +55,7 @@ parts:
     plugin: make
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
-    source-commit: 9aefd7c0cc603bbc8c3c102f5338c6af26f8127c
+    source-commit: 3ead140434da9473582b68452f7115967a7a0581
     build-packages:
       - nvidia-utils-550
       - cuda-toolkit-12-6
