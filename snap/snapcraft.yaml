@@ -55,17 +55,18 @@ parts:
     plugin: make
     source: https://github.com/wilicc/gpu-burn.git
     source-type: git
-    source-commit: 9aefd7c0cc603bbc8c3c102f5338c6af26f8127c
+    source-commit: 3ead140434da9473582b68452f7115967a7a0581
     build-packages:
-      - nvidia-utils-550
-      - cuda-toolkit-12-6
-      - libcublas-12-6
-    override-pull: |
-      craftctl default
-      git apply --ignore-space-change --ignore-whitespace \
-        $CRAFT_PROJECT_DIR/snap/local/patches/*.patch
+      - nvidia-driver-580
+      - nvidia-utils-580
+      - cuda-toolkit-13-4
+      - libcublas-13-4
     override-build: |
-      make CUDA_ARCH=all
+      make COMPUTE= NVCCFLAGS='-gencode=arch=compute_75,code=sm_75 \
+        -gencode=arch=compute_80,code=sm_80 \
+        -gencode=arch=compute_86,code=sm_86 \
+        -gencode=arch=compute_89,code=sm_89 \
+        -gencode=arch=compute_90,code=\"sm_90,compute_90\"'
 
       mkdir -p $CRAFT_PART_INSTALL/bin \
         $CRAFT_PART_INSTALL/usr/share/gpu-burn \
