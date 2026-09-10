@@ -65,7 +65,11 @@ parts:
       git apply --ignore-space-change --ignore-whitespace \
         $CRAFT_PROJECT_DIR/snap/local/patches/*.patch
     override-build: |
-      make CUDA_ARCH=all
+      make COMPUTE= NVCCFLAGS='-gencode=arch=compute_75,code=sm_75 \
+        -gencode=arch=compute_80,code=sm_80 \
+        -gencode=arch=compute_86,code=sm_86 \
+        -gencode=arch=compute_89,code=sm_89 \
+        -gencode=arch=compute_90,code=\"sm_90,compute_90\"'
 
       mkdir -p $CRAFT_PART_INSTALL/bin \
         $CRAFT_PART_INSTALL/usr/share/gpu-burn \
