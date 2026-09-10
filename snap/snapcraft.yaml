@@ -57,6 +57,7 @@ parts:
     source-type: git
     source-commit: 3ead140434da9473582b68452f7115967a7a0581
     build-packages:
+      - nvidia-driver-580
       - nvidia-utils-580
       - cuda-toolkit-13-4
       - libcublas-13-4
